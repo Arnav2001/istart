@@ -398,7 +398,7 @@ Widget bottomCardWidget(BuildContext context,String s1,String s2,String s3,Strin
                   height: 70,
                   child: Text(v1,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 20),),
+                    style: TextStyle(fontSize: 16),),
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.white
@@ -427,7 +427,7 @@ Widget bottomCardWidget(BuildContext context,String s1,String s2,String s3,Strin
                   width: 70,
                   height: 70,
                   child: Text(v2,
-                    style: TextStyle(fontSize: 20),),
+                    style: TextStyle(fontSize: 16),),
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.white
@@ -457,7 +457,7 @@ Widget bottomCardWidget(BuildContext context,String s1,String s2,String s3,Strin
           height: 70,
           child: Text(v3,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 20),),
+            style: TextStyle(fontSize: 16),),
           decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.white
