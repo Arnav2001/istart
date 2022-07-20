@@ -26,7 +26,7 @@ flutter:
 
   assets:
       - assets/main_logo.png
-      - assets/Rural Startup.png
-      - assets/School Startup.png
+      - assets/rural_startup.png
+      - assets/school_startup.png
       - assets/challenges.png
       - assets/start-up.png

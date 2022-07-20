@@ -106,29 +106,49 @@ class _HomePageState extends State<HomePage>
               ),
 
 
-
-
-              homePageCardsGroup(
-                Color(0xfff37736),
-                Icons.analytics_outlined,
-                'Startup',
-                context,
-                RouteWhereYouGo(),
-                Color(0xffFF6D6D),
-                Icons.all_inclusive,
-                'Rural Startup',
-                RouteWhereYouGo(),
+            Padding(
+              padding: EdgeInsets.only(bottom: _w / 17),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  homePageCard(
+                    'assets/start-up.png',
+                    'Startup',
+                    context,
+                    RouteWhereYouGo(),
+                  ),
+                  homePageCard(
+                    'assets/rural_startup.png',
+                    'Rural Startup',
+                    context,
+                    RouteWhereYouGo(),
+                  ),
+                ],
               ),
-              homePageCardsGroup(
-                  Colors.lightGreen,
-                  Icons.gamepad_outlined,
-                  'Challenges',
-                  context,
-                  RouteWhereYouGo(),
-                  Color(0xffffa700),
-                  Icons.article,
-                  'School Startup',
-                  RouteWhereYouGo()),
+            ),
+              Padding(
+                padding: EdgeInsets.only(bottom: _w / 17),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    homePageCard(
+                      'assets/challenges.png',
+                      'Challenges',
+                      context,
+                      RouteWhereYouGo(),
+                    ),
+                    homePageCard(
+                      'assets/school_startup.png',
+                      'School Startup',
+                      context,
+                      RouteWhereYouGo(),
+                    ),
+                  ],
+                ),
+              ),
+
+
+
               SizedBox(height: _w / 20),
 
               Padding(
@@ -249,30 +269,7 @@ class _HomePageState extends State<HomePage>
     );
   }
 
-  Widget homePageCardsGroup(
-      Color color,
-      IconData icon,
-      String title,
-      BuildContext context,
-      Widget route,
-      Color color2,
-      IconData icon2,
-      String title2,
-      Widget route2) {
-    double _w = MediaQuery.of(context).size.width;
-    return Padding(
-      padding: EdgeInsets.only(bottom: _w / 17),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          homePageCard(color, icon, title, context, route),
-          homePageCard(color2, icon2, title2, context, route2),
-        ],
-      ),
-    );
-  }
-
-  Widget homePageCard(Color color, IconData icon, String title,
+  Widget homePageCard( String imgPath, String title,
       BuildContext context, Widget route) {
     double _w = MediaQuery.of(context).size.width;
     return Opacity(
@@ -317,13 +314,9 @@ class _HomePageState extends State<HomePage>
                   height: _w / 8,
                   width: _w / 8,
                   decoration: BoxDecoration(
-                    color: color.withOpacity(.1),
                     shape: BoxShape.circle,
                   ),
-                  child: Icon(
-                    icon,
-                    color: color.withOpacity(.6),
-                  ),
+                  child: Image(image: AssetImage(imgPath)),
                 ),
                 Text(
                   title,
@@ -337,7 +330,6 @@ class _HomePageState extends State<HomePage>
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(),
               ],
             ),
           ),
