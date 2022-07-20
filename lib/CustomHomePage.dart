@@ -145,36 +145,52 @@ class _HomePageState extends State<HomePage>
                    )
               ),
 
-              SlimyCard(
-                color: Colors.orange,
-                topCardHeight: 150,
-                bottomCardHeight: 300,
-                topCardWidget: topCardWidget('Startups'),
-                bottomCardWidget: bottomCardWidget(context, 'Startups', 'Rural Startup', 'Total Visitors','1749','348','1,529,360'),
+              Padding(
+                padding: EdgeInsets.only(left: _w/15,right: _w/15),
+                child: SlimyCard(
+                  width: _w,
+                  color: Colors.orange,
+                  topCardHeight: 150,
+                  bottomCardHeight: 300,
+                  topCardWidget: topCardWidget('Startups'),
+                  bottomCardWidget: bottomCardWidget(context, 'Startups', 'Rural Startup', 'Total Visitors','1749','348','1,529,360'),
+                ),
               ),
               SizedBox(height: _w / 20),
-              SlimyCard(
-                color: Colors.blueAccent,
-                topCardHeight: 150,
-                bottomCardHeight: 300,
-                topCardWidget: topCardWidget('Beneficiaries'),
-                bottomCardWidget: bottomCardWidget(context, 'Total Jobs', 'Total Investment', 'Total Challenges','20,451','185 Cr','34'),
+              Padding(
+                padding: EdgeInsets.only(left: _w/15,right: _w/15),
+                child: SlimyCard(
+                  width: _w,
+                  color: Colors.blueAccent,
+                  topCardHeight: 150,
+                  bottomCardHeight: 300,
+                  topCardWidget: topCardWidget('Beneficiaries'),
+                  bottomCardWidget: bottomCardWidget(context, 'Total Jobs', 'Total Investment', 'Total Challenges','20,451','185 Cr','34'),
+                ),
               ),
               SizedBox(height: _w / 20),
-              SlimyCard(
-                color: Colors.amber,
-                topCardHeight: 150,
-                bottomCardHeight: 300,
-                topCardWidget: topCardWidget('School Startups'),
-                bottomCardWidget: bottomCardWidget(context, 'Total Schools', 'Total Students', 'Total Teachers','1,714','29,333','612'),
+              Padding(
+                padding: EdgeInsets.only(left: _w/15,right: _w/15),
+                child: SlimyCard(
+                  width: _w,
+                  color: Colors.amber,
+                  topCardHeight: 150,
+                  bottomCardHeight: 300,
+                  topCardWidget: topCardWidget('School Startups'),
+                  bottomCardWidget: bottomCardWidget(context, 'Total Schools', 'Total Students', 'Total Teachers','1,714','29,333','612'),
+                ),
               ),
               SizedBox(height: _w / 20),
-              SlimyCard(
-                color: Colors.redAccent,
-                topCardHeight: 150,
-                bottomCardHeight: 300,
-                topCardWidget: topCardWidget('Others'),
-                bottomCardWidget: bottomCardWidget(context, 'Events', 'Virtual Sessions', 'Total Mentors','213','17','10'),
+              Padding(
+                padding: EdgeInsets.only(left: _w/15,right: _w/15),
+                child: SlimyCard(
+                  width: _w,
+                  color: Colors.redAccent,
+                  topCardHeight: 150,
+                  bottomCardHeight: 300,
+                  topCardWidget: topCardWidget('Others'),
+                  bottomCardWidget: bottomCardWidget(context, 'Events', 'Virtual Sessions', 'Total Mentors','213','17','10'),
+                ),
               ),
               SizedBox(height: _w / 20),
             ],
