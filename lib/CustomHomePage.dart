@@ -8,15 +8,45 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
   late Animation<double> _animation2;
-
+  late AnimationController _controller2;
+  late Animation<double> _nav_animation1;
+  late Animation<double> _nav_animation2;
+  late Animation<double> _nav_animation3;
+  late bool _bool = true;
   @override
   void initState() {
     super.initState();
+    _controller2 =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 600));
 
+     _nav_animation1 = Tween<double>(begin: 0, end: 20).animate(CurvedAnimation(
+      parent: _controller2,
+      curve: Curves.easeOut,
+      reverseCurve: Curves.easeIn,
+    ))
+      ..addListener(() {
+        setState(() {});
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.dismissed) {
+          _bool = true;
+        }
+      });
+    _nav_animation2 = Tween<double>(begin: 0, end: .3).animate(_controller2)
+      ..addListener(() {
+        setState(() {});
+      });
+    _nav_animation3 = Tween<double>(begin: .9, end: 1).animate(CurvedAnimation(
+        parent: _controller2,
+        curve: Curves.fastLinearToSlowEaseIn,
+        reverseCurve: Curves.ease))
+      ..addListener(() {
+        setState(() {});
+      });
     _controller = AnimationController(
       vsync: this,
       duration: Duration(seconds: 1),
@@ -39,17 +69,35 @@ class _HomePageState extends State<HomePage>
   void dispose() {
     _controller.dispose();
     _controller.dispose();
+    _controller2.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     double _w = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        brightness: Brightness.dark,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          icon: Icon(Icons.menu_rounded),
+          splashColor: Colors.transparent,
+          color: Colors.black,
+          onPressed: () {
+            if (_bool == true) {
+              _controller2.forward();
+            } else {
+              _controller2.reverse();
+            }
+            _bool = false;
+          },
+        ),
+      ),
       body: Stack(
         children: [
-          /// ListView
           ListView(
             physics:
             BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
@@ -106,29 +154,49 @@ class _HomePageState extends State<HomePage>
               ),
 
 
-
-
-              homePageCardsGroup(
-                Color(0xfff37736),
-                Icons.analytics_outlined,
-                'Startup',
-                context,
-                RouteWhereYouGo(),
-                Color(0xffFF6D6D),
-                Icons.all_inclusive,
-                'Rural Startup',
-                RouteWhereYouGo(),
+            Padding(
+              padding: EdgeInsets.only(bottom: _w / 17),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  homePageCard(
+                    'assets/start-up.png',
+                    'Startup',
+                    context,
+                    RouteWhereYouGo(),
+                  ),
+                  homePageCard(
+                    'assets/rural_startup.png',
+                    'Rural Startup',
+                    context,
+                    RouteWhereYouGo(),
+                  ),
+                ],
               ),
-              homePageCardsGroup(
-                  Colors.lightGreen,
-                  Icons.gamepad_outlined,
-                  'Challenges',
-                  context,
-                  RouteWhereYouGo(),
-                  Color(0xffffa700),
-                  Icons.article,
-                  'School Startup',
-                  RouteWhereYouGo()),
+            ),
+              Padding(
+                padding: EdgeInsets.only(bottom: _w / 17),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    homePageCard(
+                      'assets/challenges.png',
+                      'Challenges',
+                      context,
+                      RouteWhereYouGo(),
+                    ),
+                    homePageCard(
+                      'assets/school_startup.png',
+                      'School Startup',
+                      context,
+                      RouteWhereYouGo(),
+                    ),
+                  ],
+                ),
+              ),
+
+
+
               SizedBox(height: _w / 20),
 
               Padding(
@@ -244,35 +312,13 @@ class _HomePageState extends State<HomePage>
 
           // Blur the Status bar
           blurTheStatusBar(context),
+          CustomNavigationDrawer(),
         ],
       ),
     );
   }
 
-  Widget homePageCardsGroup(
-      Color color,
-      IconData icon,
-      String title,
-      BuildContext context,
-      Widget route,
-      Color color2,
-      IconData icon2,
-      String title2,
-      Widget route2) {
-    double _w = MediaQuery.of(context).size.width;
-    return Padding(
-      padding: EdgeInsets.only(bottom: _w / 17),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          homePageCard(color, icon, title, context, route),
-          homePageCard(color2, icon2, title2, context, route2),
-        ],
-      ),
-    );
-  }
-
-  Widget homePageCard(Color color, IconData icon, String title,
+  Widget homePageCard( String imgPath, String title,
       BuildContext context, Widget route) {
     double _w = MediaQuery.of(context).size.width;
     return Opacity(
@@ -317,13 +363,9 @@ class _HomePageState extends State<HomePage>
                   height: _w / 8,
                   width: _w / 8,
                   decoration: BoxDecoration(
-                    color: color.withOpacity(.1),
                     shape: BoxShape.circle,
                   ),
-                  child: Icon(
-                    icon,
-                    color: color.withOpacity(.6),
-                  ),
+                  child: Image(image: AssetImage(imgPath)),
                 ),
                 Text(
                   title,
@@ -337,7 +379,6 @@ class _HomePageState extends State<HomePage>
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(),
               ],
             ),
           ),
@@ -356,6 +397,110 @@ class _HomePageState extends State<HomePage>
           color: Colors.transparent,
         ),
       ),
+    );
+  }
+
+  Widget CustomNavigationDrawer() {
+    double _height = MediaQuery.of(context).size.height;
+    double _width = MediaQuery.of(context).size.width;
+    return BackdropFilter(
+      filter: ImageFilter.blur(
+          sigmaY: _nav_animation1.value, sigmaX: _nav_animation1.value),
+      child: Container(
+        height: _bool ? 0 : _height,
+        width: _bool ? 0 : _width,
+        color: Colors.transparent,
+        child: Center(
+          child: Transform.scale(
+            scale: _nav_animation3.value,
+            child: Container(
+              width: _width * .9,
+              height: _width * 1.3,
+              decoration: BoxDecoration(
+                color: Colors.blue.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Colors.black12,
+                    radius: 35,
+                    child: Icon(
+                      Icons.person_outline_rounded,
+                      size: 30,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      MyTile(Icons.settings_outlined, 'Settings', () {
+                        HapticFeedback.lightImpact();
+
+                      }),
+                      MyTile(Icons.info_outline_rounded, 'About', () {
+                        HapticFeedback.lightImpact();
+
+                      }),
+                      MyTile(Icons.feedback_outlined, 'Feedback', () {
+                        HapticFeedback.lightImpact();
+
+                      }),
+                      MyTile(Icons.find_in_page_outlined, 'Privacy Policy', () {
+                        HapticFeedback.lightImpact();
+
+                      }),
+                    ],
+                  ),
+                  SizedBox(),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+
+  Widget MyTile(
+      IconData icon,
+      String title,
+      VoidCallback voidCallback,
+      ) {
+    return Column(
+      children: [
+        ListTile(
+          tileColor: Colors.black.withOpacity(.08),
+          leading: CircleAvatar(
+            backgroundColor: Colors.black12,
+            child: Icon(
+              icon,
+              color: Colors.white,
+            ),
+          ),
+          onTap: voidCallback,
+          title: Text(
+            title,
+            style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1),
+          ),
+          trailing: Icon(
+            Icons.arrow_right,
+            color: Colors.white,
+          ),
+        ),
+        divider()
+      ],
+    );
+  }
+
+  Widget divider() {
+    return Container(
+      height: 5,
+      width: MediaQuery.of(context).size.width,
     );
   }
 }
@@ -490,4 +635,5 @@ Widget bottomCardWidget(BuildContext context,String s1,String s2,String s3,Strin
       ),
     ],
   );
+
 }
