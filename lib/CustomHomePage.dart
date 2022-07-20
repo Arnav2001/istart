@@ -84,9 +84,30 @@ class _HomePageState extends State<HomePage>
                         textAlign: TextAlign.start,
                       ),
                     ),
+
+                    Padding(
+                      padding: EdgeInsets.only(right: _w/10,top: _w/10),
+                      child: Text(
+                        'Additional Services That Will Grow Your Business',
+
+
+                        style:TextStyle(
+                          fontSize: 18,
+                          color: Colors.black.withOpacity(.5),
+                          fontWeight: FontWeight.w500,
+
+                        ),
+                        textAlign: TextAlign.center,
+                       )
+
+                    )
                   ],
                 ),
               ),
+
+
+
+
               homePageCardsGroup(
                 Color(0xfff37736),
                 Icons.analytics_outlined,
@@ -109,6 +130,21 @@ class _HomePageState extends State<HomePage>
                   'School Startup',
                   RouteWhereYouGo()),
               SizedBox(height: _w / 20),
+
+              Padding(
+                   padding: EdgeInsets.only(top: _w/12,bottom: _w/10),
+                   child: Text(
+                              'We have achieved some great for experiences',
+                     style:TextStyle(
+                       fontSize: 17,
+                       color: Colors.black.withOpacity(.5),
+                       fontWeight: FontWeight.w500,
+
+                     ),
+                     textAlign: TextAlign.center,
+                   )
+              ),
+
               SlimyCard(
                 color: Colors.orange,
                 topCardHeight: 150,
@@ -362,7 +398,7 @@ Widget bottomCardWidget(BuildContext context,String s1,String s2,String s3,Strin
                   height: 70,
                   child: Text(v1,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 20),),
+                    style: TextStyle(fontSize: 16),),
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.white
@@ -391,7 +427,7 @@ Widget bottomCardWidget(BuildContext context,String s1,String s2,String s3,Strin
                   width: 70,
                   height: 70,
                   child: Text(v2,
-                    style: TextStyle(fontSize: 20),),
+                    style: TextStyle(fontSize: 16),),
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.white
@@ -421,7 +457,7 @@ Widget bottomCardWidget(BuildContext context,String s1,String s2,String s3,Strin
           height: 70,
           child: Text(v3,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 20),),
+            style: TextStyle(fontSize: 16),),
           decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.white
