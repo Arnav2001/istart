@@ -220,7 +220,7 @@ class _HomePageState extends State<HomePage>
                   color: Colors.orange,
                   topCardHeight: 150,
                   bottomCardHeight: 300,
-                  topCardWidget: topCardWidget('Startups'),
+                  topCardWidget: topCardWidget('Startups','assets/start_up.png',context),
                   bottomCardWidget: bottomCardWidget(context, 'Startups', 'Rural Startup', 'Total Visitors','1749','348','1,529,360'),
                 ),
               ),
@@ -232,7 +232,7 @@ class _HomePageState extends State<HomePage>
                   color: Colors.blueAccent,
                   topCardHeight: 150,
                   bottomCardHeight: 300,
-                  topCardWidget: topCardWidget('Beneficiaries'),
+                  topCardWidget: topCardWidget('Beneficiaries','assets/beneficiary.png',context),
                   bottomCardWidget: bottomCardWidget(context, 'Total Jobs', 'Total Investment', 'Total Challenges','20,451','185 Cr','34'),
                 ),
               ),
@@ -244,7 +244,7 @@ class _HomePageState extends State<HomePage>
                   color: Colors.amber,
                   topCardHeight: 150,
                   bottomCardHeight: 300,
-                  topCardWidget: topCardWidget('School Startups'),
+                  topCardWidget: topCardWidget('School Startups','assets/School_Startup.png',context),
                   bottomCardWidget: bottomCardWidget(context, 'Total Schools', 'Total Students', 'Total Teachers','1,714','29,333','612'),
                 ),
               ),
@@ -256,7 +256,7 @@ class _HomePageState extends State<HomePage>
                   color: Colors.redAccent,
                   topCardHeight: 150,
                   bottomCardHeight: 300,
-                  topCardWidget: topCardWidget('Others'),
+                  topCardWidget: topCardWidget('Others','assets/more.png',context),
                   bottomCardWidget: bottomCardWidget(context, 'Events', 'Virtual Sessions', 'Total Mentors','213','17','10'),
                 ),
               ),
@@ -533,14 +533,19 @@ class RouteWhereYouGo extends StatelessWidget {
     );
   }
 }
-Widget topCardWidget(String text){
-  return Text(
-    text,
-    style: TextStyle(
-        fontSize: 25,
-        fontWeight: FontWeight.bold,
-        color: Colors.white
-    ),
+Widget topCardWidget(String text,String image,BuildContext context){
+  return
+      Text(
+        text,
+        maxLines: 4,
+        softWrap: true,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+          fontSize: 18,
+          color: Colors.white,
+          fontWeight: FontWeight.w700,
+        ),
+        textAlign: TextAlign.center,
   );
 }
 Widget bottomCardWidget(BuildContext context,String s1,String s2,String s3,String v1,String v2,String v3){

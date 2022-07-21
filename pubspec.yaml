@@ -29,4 +29,11 @@ flutter:
       - assets/rural_startup.png
       - assets/school_startup.png
       - assets/challenges.png
-      - assets/start-up.png
+      - assets/start_up.png
+      - assets/more.png
+      - assets/startups_banner.jpg
+
+fonts:
+  - family: Roboto
+    fonts:
+      -assets: assets/fonts/Roboto-Light.ttf
